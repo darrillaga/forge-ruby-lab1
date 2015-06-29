@@ -7,13 +7,10 @@ class Match
     @ended = false
   end
 
-  def title
-    "#{@team_a.name} vs #{@team_b.name}"
-  end
-
   def summary
     score_a = @ended ? @score_a : '-'
     score_b = @ended ? @score_b : '-'
+
     "#{@team_a.name} (#{score_a}) vs #{@team_b.name} (#{score_b})"
   end
 
@@ -36,5 +33,9 @@ class Match
       @team_a.add_match_draw
       @team_b.add_match_draw
     end
+  end
+
+  def to_s
+    "#{@team_a.name} vs #{@team_b.name}"
   end
 end

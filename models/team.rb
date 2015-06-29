@@ -1,6 +1,9 @@
 class Team
-  def initialize(name)
+  attr_accessor :name, :players, :size
+
+  def initialize(name, size)
     @name = name
+    @size = size
     @players = []
 
     @results = {
@@ -9,23 +12,20 @@ class Team
       lost:   0,
       draw:   0
     }
+
     @points = 0
-  end
-
-  def name
-    @name
-  end
-
-  def summary
-    "#{@name} (#{@players.count} jugadores)"
   end
 
   def add_player(player)
     @players << player
   end
 
-  def players
-    @players
+  def available_to_play(championship_size)
+    @players.length >= championship_size
+  end
+
+  def to_s
+    "#{name} (#{players.length} jugadores)"
   end
 
   def add_match_win
@@ -46,6 +46,6 @@ class Team
   end
 
   def table_data
-    @results.merge({ points: @points })
+    @results.merge(points: @points)
   end
 end
